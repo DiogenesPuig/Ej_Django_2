@@ -1,0 +1,7 @@
+.directory
+/*/migrations/**
+!/*/migrations/__init__.py
+!static/
+static/*
+media(*/**
+!media/*/default.png
