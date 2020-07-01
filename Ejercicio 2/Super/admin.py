@@ -9,7 +9,7 @@ class ProveedorAdmin(admin.ModelAdmin):
     list_display = ('id','Nombre','WEB','Direccion')
     list_display_links = ('id','Nombre','WEB','Direccion')
     list_filter = ('Nombre',)
-    search_fields = ['Nombre',]
+    search_fields = ['Nombre','Provedor_Id']
 
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('Nombre','Descripcion')
