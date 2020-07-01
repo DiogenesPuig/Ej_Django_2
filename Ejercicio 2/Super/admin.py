@@ -1,6 +1,9 @@
 from django.contrib import admin
 from Super.models import *
 # Register your models here.
+class ProductoInline(admin.TabularInline):
+    model = Producto
+
 class DireccionAdmin(admin.ModelAdmin):
     list_display = ('Calle','Numero','Ciudad')
     list_display_links = ('Calle','Numero','Ciudad')
@@ -8,8 +11,9 @@ class DireccionAdmin(admin.ModelAdmin):
 class ProveedorAdmin(admin.ModelAdmin):
     list_display = ('id','Nombre','WEB','Direccion')
     list_display_links = ('id','Nombre','WEB','Direccion')
-    list_filter = ('Nombre',)
+    list_filter = ('Nombre','Provedor_Id')
     search_fields = ['Nombre','Provedor_Id']
+    inlines = [ProductoInline,]
 
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('Nombre','Descripcion')
@@ -38,6 +42,7 @@ class VentaAdmin(admin.ModelAdmin):
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','Nombre','Telefono')
     list_display_links = ('id','Nombre','Telefono')
+    search_fields = ['Nombre',]
 
 
 admin.site.register(Direccion,DireccionAdmin)
