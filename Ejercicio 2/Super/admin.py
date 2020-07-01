@@ -36,8 +36,13 @@ class DetalleAdmin(admin.ModelAdmin):
     list_display_links = ('Cantidad','nombre_prod')
 
 class VentaAdmin(admin.ModelAdmin):
-    list_display = ('Detalle','Fecha','Descuento','Monto_Final')
-    list_display_links = ('Detalle','Fecha','Descuento','Monto_Final')
+    list_display = ('Detalle','Fecha','Monto_Final','Descuento',)
+    list_display_links = ('Detalle','Fecha','Monto_Final','Descuento')
+    actions = ['valDesc',]
+
+    def valDesc(self,request,queryset):
+        return queryset.update(Descuento = True)
+    valDesc.short_description = "Validar Descuento"
 
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','Nombre','Telefono')

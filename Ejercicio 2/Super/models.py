@@ -11,6 +11,9 @@ class Direccion(models.Model):
         verbose_name = "Direccion"
         verbose_name_plural = "Direcciones"
 
+    def __str__(self):
+        return self.Calle + " "+ str(self.Numero)
+
 class Proveedor(models.Model):
     Provedor_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
@@ -23,6 +26,7 @@ class Proveedor(models.Model):
     class Meta:
         verbose_name = "Proveedor"
         verbose_name_plural = "Provedores"
+
 
 class Categoria(models.Model):
     Categoria_Id = models.AutoField(primary_key=True)
@@ -45,12 +49,18 @@ class Detalle(models.Model):
         return self.Producto.Nombre
     nombre_prod.short_description = "Producto"
 
+    def __str__(self):
+        return str(self.Cantidad) + " " + self.Producto.Nombre
+
 class Venta(models.Model):
     Venta_Id = models.AutoField(primary_key=True)
     Fecha = models.DateField()
     Monto_Final = models.IntegerField()
-    Descuento = models.IntegerField()
+    Descuento = models.BooleanField()
     Detalle = models.ForeignKey(Detalle, on_delete=models.CASCADE, default = None)
+
+    def __str__(self):
+        return str(self.Detalle.Cantidad) + " " +self.Detalle.Producto.Nombre
 
 class Cliente(models.Model):
     Cliente_Id = models.AutoField(primary_key=True)
