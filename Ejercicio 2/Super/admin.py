@@ -14,8 +14,8 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_display_links = ('Nombre','Descripcion')
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('Nombre','Precio','Stock','nombre_cate','nombre_prov')
-    list_display_links = ('Nombre','nombre_cate','nombre_prov')
+    list_display = ('Nombre','Precio','Stock',)
+    list_display_links = ('Nombre',)
 
 class DetalleAdmin(admin.ModelAdmin):
     list_display = ('Cantidad','nombre_prod')

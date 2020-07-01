@@ -12,7 +12,7 @@ class Direccion(models.Model):
         verbose_name_plural = "Direcciones"
 
 class Proveedor(models.Model):
-    Proveedor_Id = models.AutoField(primary_key=True)
+    Provedor_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
@@ -33,14 +33,6 @@ class Producto(models.Model):
     Stock = models.IntegerField()
     Categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default = None)
     Proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, default = None)
-
-    def nombre_cate(self):
-        return self.Categoria.Nombre
-    nombre_cate.short_description = "Categoria"
-
-    def nombre_prov(self):
-        return self.Proveedor.Nombre
-    nombre_prov.short_description = "Proveedor"
 
 class Detalle(models.Model):
     Cantidad  = models.IntegerField()
