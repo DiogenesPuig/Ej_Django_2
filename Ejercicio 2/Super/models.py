@@ -7,11 +7,19 @@ class Direccion(models.Model):
     Comuna = models.CharField(max_length=50)
     Ciudad = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = "Direccion"
+        verbose_name_plural = "Direcciones"
+
 class Proveedor(models.Model):
     Provedor_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Proveedor"
+        verbose_name_plural = "Provedores"
 
 class Categoria(models.Model):
     Categoria_Id = models.AutoField(primary_key=True)
@@ -26,9 +34,21 @@ class Producto(models.Model):
     Categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default = None)
     Proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, default = None)
 
+    def nombre_cate(self):
+        return self.Categoria.Nombre
+    nombre_cate.short_description = "Categoria"
+
+    def nombre_prov(self):
+        return self.Proveedor.Nombre
+    nombre_prov.short_description = "Proveedor"
+
 class Detalle(models.Model):
     Cantidad  = models.IntegerField()
     Producto = models.ForeignKey(Producto, on_delete=models.CASCADE,default = None)
+
+    def nombre_prod(self):
+        return self.Producto.Nombre
+    nombre_prod.short_description = "Producto"
 
 class Venta(models.Model):
     Venta_Id = models.AutoField(primary_key=True)
