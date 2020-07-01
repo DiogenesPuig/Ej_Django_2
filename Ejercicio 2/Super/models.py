@@ -12,7 +12,7 @@ class Direccion(models.Model):
         verbose_name_plural = "Direcciones"
 
 class Proveedor(models.Model):
-    Provedor_Id = models.AutoField(primary_key=True)
+    Proveedor_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
