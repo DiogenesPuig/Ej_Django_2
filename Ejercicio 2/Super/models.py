@@ -13,28 +13,34 @@ class Proveedor(models.Model):
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
 
+
 class Categoria(models.Model):
     Categoria_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
-    Nombre = models.CharField(max_length=100)
+    Descripcion = models.CharField(max_length=100, default = '')
 
 class Producto(models.Model):
     Producto_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     Precio = models.IntegerField()
     Stock = models.IntegerField()
+    Categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default = '')
+    Proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, default = '')
 
 class Detalle(models.Model):
     Cantidad  = models.IntegerField()
+    Producto = models.ForeignKey(Producto, on_delete=models.CASCADE,default = '')
 
 class Venta(models.Model):
     Venta_Id = models.AutoField(primary_key=True)
     Fecha = models.DateField()
     Monto_Final = models.IntegerField()
     Descuento = models.IntegerField()
+    Detalle = models.ForeignKey(Detalle, on_delete=models.CASCADE, default = '')
 
 class Cliente(models.Model):
     Cliente_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     Telefono = models.CharField(max_length=20) #Hay que cambiarlo para que guarde mas de 1 telefono
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+    Venta = models.ForeignKey(Venta,on_delete=models.CASCADE, default = '')
