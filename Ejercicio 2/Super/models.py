@@ -13,7 +13,6 @@ class Proveedor(models.Model):
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
 
-
 class Categoria(models.Model):
     Categoria_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
@@ -24,23 +23,23 @@ class Producto(models.Model):
     Nombre = models.CharField(max_length=50)
     Precio = models.IntegerField()
     Stock = models.IntegerField()
-    Categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default = '')
-    Proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, default = '')
+    Categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default = None)
+    Proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, default = None)
 
 class Detalle(models.Model):
     Cantidad  = models.IntegerField()
-    Producto = models.ForeignKey(Producto, on_delete=models.CASCADE,default = '')
+    Producto = models.ForeignKey(Producto, on_delete=models.CASCADE,default = None)
 
 class Venta(models.Model):
     Venta_Id = models.AutoField(primary_key=True)
     Fecha = models.DateField()
     Monto_Final = models.IntegerField()
     Descuento = models.IntegerField()
-    Detalle = models.ForeignKey(Detalle, on_delete=models.CASCADE, default = '')
+    Detalle = models.ForeignKey(Detalle, on_delete=models.CASCADE, default = None)
 
 class Cliente(models.Model):
     Cliente_Id = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=50)
     Telefono = models.CharField(max_length=20) #Hay que cambiarlo para que guarde mas de 1 telefono
-    Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
-    Venta = models.ForeignKey(Venta,on_delete=models.CASCADE, default = '')
+    Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE, default = None)
+    Venta = models.ForeignKey(Venta,on_delete=models.CASCADE, default = None)
