@@ -17,6 +17,9 @@ class Proveedor(models.Model):
     WEB = models.CharField(max_length=50) #UrlField() probar usar (???)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
 
+    def id(self):
+        return self.Provedor_Id
+
     class Meta:
         verbose_name = "Proveedor"
         verbose_name_plural = "Provedores"
