@@ -16,6 +16,14 @@ class CategoriaAdmin(admin.ModelAdmin):
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ('Nombre','Precio','Stock',)
     list_display_links = ('Nombre',)
+    fieldsets = (
+    ('Descripcion',{
+        'fields': ('Nombre','Categoria','Proveedor')
+    }),
+    ('Variables',{
+        'fields': ('Precio','Stock')
+    })
+    )
 
 class DetalleAdmin(admin.ModelAdmin):
     list_display = ('Cantidad','nombre_prod')
