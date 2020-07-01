@@ -26,8 +26,9 @@ class VentaAdmin(admin.ModelAdmin):
     list_display_links = ('Detalle','Fecha','Descuento','Monto_Final')
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('Nombre','Telefono','Venta')
-    list_display_links = ('Nombre','Telefono','Venta')
+    list_display = ('id','Nombre','Telefono')
+    list_display_links = ('id','Nombre','Telefono')
+
 
 admin.site.register(Direccion,DireccionAdmin)
 admin.site.register(Proveedor,ProveedorAdmin)

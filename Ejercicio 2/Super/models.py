@@ -55,3 +55,6 @@ class Cliente(models.Model):
     Telefono = models.CharField(max_length=20) #Hay que cambiarlo para que guarde mas de 1 telefono
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE, default = None)
     Venta = models.ForeignKey(Venta,on_delete=models.CASCADE, default = None)
+
+    def id(self):
+        return self.Cliente_Id
